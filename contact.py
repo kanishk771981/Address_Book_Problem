@@ -1,14 +1,29 @@
 class Contact:
-   
-    def __init__(self,fname,lname,address,city,state,zip,phonenum,email):
-        self.fname = fname
-        self.lname = lname
-        self.phonenum = phonenum
-        self.address = address
-        self.city = city
-        self.state = state
-        self.zip_code = zip
-        self.email = email
+    """
+    A class to represent a contact with various attributes.
+
+    Attributes:
+    kwargs : dict
+        A dictionary of attributes (e.g., fname, lname, address, city, state, zip_code, phone_num, email).
+
+    Methods:
+    __str__():
+        Returns a string representation of the contact.
+    """
+
+    def __init__(self, **kwargs):
+        """
+        Initializes a Contact instance with dynamic attributes.
+
+        Parameters:
+        kwargs : dict
+            Key-value pairs of attributes to set.
+        """
+        for k, v in kwargs.items():
+            setattr(self, k, v)
 
     def __str__(self):
-         return f"{self.fname} {self.lname}, {self.address}, {self.city}, {self.state}, {self.zip_code}, {self.phonenum}, {self.email}"
+        """
+        Returns a formatted string representing the contact's information.
+        """
+        return f"{getattr(self, 'fname', '')} {getattr(self, 'lname', '')}, {getattr(self, 'address', '')}, {getattr(self, 'city', '')}, {getattr(self, 'state', '')}, {getattr(self, 'zip_code', '')}, {getattr(self, 'phone_num', '')}, {getattr(self, 'email', '')}"
