@@ -25,13 +25,13 @@ def validate_data(data_dict):
     validated_data = {}
 
     for key, value in data_dict.items():
-        if key.endswith("first_name"):
+        if key.endswith("fname"):
             if re.fullmatch(r'^[A-Z][a-z]{2,}$', value):  
                 validated_data[key] = value
             else:
                 raise UserFieldValidationEror("Invalid first name. It must start with a capital letter and have at least 2 lowercase letters.")
 
-        elif key.endswith("last_name"):
+        elif key.endswith("lname"):
             if re.fullmatch(r'^[A-Z][a-z]{2,}$', value): 
                 validated_data[key] = value
             else:
