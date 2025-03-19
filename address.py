@@ -1,4 +1,5 @@
 from validator import validate_user_data
+from contact import Contact
 
 class AddressBook:
     """
@@ -23,6 +24,8 @@ class AddressBook:
     Delete the Existing Contact ,takes input as First Name and Last Name of user
 
     """
+    
+
 
     def __init__(self,name):
          """
@@ -30,6 +33,8 @@ class AddressBook:
         """
          self.address_book_name = name
          self.contacts = []
+   
+        
 
     def add_contact(self, contact_o):
        self.contacts.append(contact_o)
@@ -100,6 +105,13 @@ class AddressBook:
             else:
                 print("Contact not found")
                 return
+    
+    def contact_exists(self,fname,lname):
+        for contact in self.contacts:
+            if contact.fname.lower() == fname.lower() and contact.lname.lower() == lname.lower():
+                return True
+        
+
 
 
 

@@ -48,7 +48,9 @@ def main():
                                         "phone_num": input("Enter Phone Number: "),
                                         "email": input("Enter Email: ")
                                     }
-                                    if validate_user_data(user_data):
+                                    if address_book.contact_exists(user_data["fname"],user_data["lname"]):
+                                        print(f"Contact with {user_data['fname']}{user_data['lname']} already exists")
+                                    elif validate_user_data(user_data):
                                         contact = Contact(**user_data)
                                         address_book.add_contact(contact)
                                         print("Contact added successfully.")
@@ -73,7 +75,7 @@ def main():
                         except ValueError:
                             print("Invalid input! Please enter a number.")
 
-                case 6:
+                case 3:
                     print("Exiting program.")
                     break
 
