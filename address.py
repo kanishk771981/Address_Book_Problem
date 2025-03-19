@@ -1,3 +1,4 @@
+from validator import validate_user_data
 
 class AddressBook:
     """
@@ -23,10 +24,11 @@ class AddressBook:
 
     """
 
-    def __init__(self):
+    def __init__(self,name):
          """
         Initializes an empty address book with an empty dictionary to hold contacts.
         """
+         self.address_book_name = name
          self.contacts = []
 
     def add_contact(self, contact_o):
@@ -49,28 +51,32 @@ class AddressBook:
             print("No contacts available to edit.")
             return
 
-        
-        for contact in self.contacts:
-            print(contact)
-
         search_fname = input("Enter the first name of the person you want to edit: ").strip()
         search_lname = input("Enter the last name of the person you want to edit: ").strip()
 
         for contact in self.contacts:
             if contact.fname.lower() == search_fname.lower() and contact.lname.lower() == search_lname.lower():
                 print(f"\nEditing Contact: {contact}")
-                
-            
 
                 for field in ["fname", "lname", "city", "state", "zip_code", "address", "phone_num", "email"]:
-                    new_value = input(f"Enter new {field} (or press Enter to keep existing): ").strip()
-                    if new_value:
-                        setattr(contact, field, new_value)
+                    while True:
+                        new_value = input(f"Enter new {field} (or press Enter to keep existing): ").strip()
+                        if not new_value:
+                            break  
+
+                        temp_data = {field: new_value}
+                        validated_data = validate_user_data(temp_data)
+                        if validated_data:  
+                            setattr(contact, field, new_value)
+                            break
+                        else:
+                            print(f"Invalid {field}, please enter a valid value.")
 
                 print("Contact updated successfully!")
-                return  
+                return
 
         print("Contact not found.")
+
 
     def delete_contact(self):
         """
@@ -95,6 +101,30 @@ class AddressBook:
                 print("Contact not found")
                 return
 
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+   
+
+            
+                        
+
+            
+
+                
+            
+    
 
 
 

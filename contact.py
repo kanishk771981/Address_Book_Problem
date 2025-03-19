@@ -1,3 +1,4 @@
+
 class Contact:
     """
     A class to represent a contact with various attributes.
