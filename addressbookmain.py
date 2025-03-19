@@ -1,4 +1,5 @@
 from address import AddressBook
+from contact import Contact
 
 class AddressBookMain:
     """
@@ -18,8 +19,65 @@ class AddressBookMain:
             return address_book
 
     def get_address_book_from_main(self, address_book_name):
-        """Retrieves an address book by name."""
+        """find an address book by name."""
         return self.address_books.get(address_book_name)
+
+class AddressBookMainSearch(AddressBookMain):
+    """
+    class for search contact by city and state
+    it has function()
+    search_person_City():
+    search contact by City
+
+    search_person_state():
+    search contact by state
+    """
+
+    def __init__(self, main_add_obj,city,state):
+        self.address_books = main_add_obj.address_books
+        self.city = city
+        self.state = state
+
+
+    def search_person_city(self):
+        find_it = False
+        con = []
+        for address_book in self.address_books.values():
+            for contact in address_book.contacts:
+                if self.city.lower() == contact.city.lower():
+                    print(f"contact found in {address_book.address_book_name}")
+                    con.append(vars(contact))
+
+                    find_it = True
+        
+        if not find_it:
+            print("Contact not found")
+        print("COnatcts found -->,",con)
+    
+    def search_person_state(self):
+        find_it = False
+        con = []
+        for address_book in self.address_books.values():
+            for contact in address_book.contacts:
+                if self.state.lower() == contact.state.lower():
+                    print(f"contact found in {address_book.address_book_name}")
+                    con.append(vars(contact))
+
+                    find_it = True
+        
+        if not find_it:
+            print("Contact not found")
+        print("contact found-->",con)
+
+
+
+        
+        
+
+
+   
+    
+        
 
 
 

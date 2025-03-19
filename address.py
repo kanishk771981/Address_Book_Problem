@@ -5,28 +5,19 @@ class AddressBook:
     """
     A class to manage a collection of contacts in an address book.
 
-    Attributes:
-    contacts : dict
-        A dictionary to store contact objects with phone numbers as keys.
-
     Methods:
     add_contact(contact_o):
         Adds a contact object to the address book.
-
     print_address():
         Prints all the contacts in the address book.
-
     edit_contact():
         Edit the Existing Contact ,takes input as First Name and Last Name of user
-
     Delete_contact():
-
     Delete the Existing Contact ,takes input as First Name and Last Name of user
+    contact_exists():
+    find if there is any any duplicate contact exits or not
 
     """
-    
-
-
     def __init__(self,name):
          """
         Initializes an empty address book with an empty dictionary to hold contacts.
