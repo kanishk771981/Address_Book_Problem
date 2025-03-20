@@ -49,6 +49,9 @@ class AddressBookMainSearch(AddressBookMain):
     def search_person_city(self):
         """
         stores the person information by searching by city in state"""
+        """
+        it gives Count by city of person
+        """
         find_it = False
         self.city_dict[self.city] = [] 
 
@@ -62,11 +65,15 @@ class AddressBookMainSearch(AddressBookMain):
         if not find_it:
             print("Contact not found.")
         else:
-            print(f"Contacts found in {self.city}: {self.city_dict[self.city]}")
+             print(f"Total contacts found in {self.city}: {len(self.city_dict[self.city])}")
+             print(f"Contacts: {self.city_dict[self.city]}") 
+            
        
         
     def search_person_state(self):
         """Searches for contacts by state."""
+        """
+        it gives Count by state of person"""
         find_it = False
         self.state_dict[self.state] = []  
 
@@ -80,7 +87,9 @@ class AddressBookMainSearch(AddressBookMain):
         if not find_it:
             print("Contact not found.")
         else:
-            print(f"Contacts found in {self.state}: {self.state_dict[self.state]}")
+            print(f"Total contacts found in {self.state}: {len(self.state_dict[self.state])}")
+            print(f"Contacts: {self.state_dict[self.state]}")
+            
         
 
 
