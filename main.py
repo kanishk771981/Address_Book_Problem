@@ -15,7 +15,7 @@ def main():
 
     while True:
         try:
-            choice = int(input("\n1. Create New Address Book\n2. Manage Address Book\n3. Search Contact\n4. Exit\nEnter choice: "))
+            choice = int(input("\n1. Create New Address Book\n2. Manage Address Book\n3.Search Contact\n4. Exit\nEnter choice: "))
 
             match choice:
                 case 1:

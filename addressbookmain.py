@@ -8,6 +8,8 @@ class AddressBookMain:
     def __init__(self):  
         """Constructor to initialize address books dictionary."""
         self.address_books = {}
+        
+
 
     def add_address_book_to_main(self, name):
         """Adds a new address book if it doesn't already exist."""
@@ -21,6 +23,9 @@ class AddressBookMain:
     def get_address_book_from_main(self, address_book_name):
         """find an address book by name."""
         return self.address_books.get(address_book_name)
+    
+ 
+
 
 class AddressBookMainSearch(AddressBookMain):
     """
@@ -37,41 +42,49 @@ class AddressBookMainSearch(AddressBookMain):
         self.address_books = main_add_obj.address_books
         self.city = city
         self.state = state
+        self.city_dict = {}
+        self.state_dict = {}
 
 
     def search_person_city(self):
+        """
+        stores the person information by searching by city in state"""
         find_it = False
-        con = []
+        self.city_dict[self.city] = [] 
+
         for address_book in self.address_books.values():
             for contact in address_book.contacts:
                 if self.city.lower() == contact.city.lower():
-                    print(f"contact found in {address_book.address_book_name}")
-                    con.append(vars(contact))
-
+                    print(f"Contact found in {address_book.address_book_name}")
+                    self.city_dict[self.city].append(vars(contact)) 
                     find_it = True
-        
+
         if not find_it:
-            print("Contact not found")
-        print("COnatcts found -->,",con)
-    
+            print("Contact not found.")
+        else:
+            print(f"Contacts found in {self.city}: {self.city_dict[self.city]}")
+       
+        
     def search_person_state(self):
+        """Searches for contacts by state."""
         find_it = False
-        con = []
+        self.state_dict[self.state] = []  
+
         for address_book in self.address_books.values():
             for contact in address_book.contacts:
                 if self.state.lower() == contact.state.lower():
-                    print(f"contact found in {address_book.address_book_name}")
-                    con.append(vars(contact))
-
+                    print(f"Contact found in {address_book.address_book_name}")
+                    self.state_dict[self.state].append(vars(contact))  
                     find_it = True
-        
+
         if not find_it:
-            print("Contact not found")
-        print("contact found-->",con)
-
-
-
+            print("Contact not found.")
+        else:
+            print(f"Contacts found in {self.state}: {self.state_dict[self.state]}")
         
+
+
+
         
 
 
