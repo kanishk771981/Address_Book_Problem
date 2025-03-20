@@ -52,6 +52,23 @@ class AddressBook:
         print("contact in sorting format")
         for contact in self.contacts:
             print(contact)
+    
+    def sorting(self, key):
+        """Sorts contacts based on the specified key."""
+        self.contacts.sort(key=lambda con: getattr(con, key))
+        return self.contacts
+
+    def loc_sort(self, location):  
+        """Sorts contacts based on city, state, or zip code and displays the sorted list."""
+        location = location.strip().lower()
+        valid_keys = {"city", "state", "zip_code"}
+
+        if location in valid_keys:
+            self.sorting(location)  
+            print(f"\nContacts sorted by {location}:\n")
+            self.print_address()  
+        else:
+            print("Invalid choice. Please enter 'city', 'state', or 'zip_code'.")
 
 
     def edit_contact(self):

@@ -36,7 +36,7 @@ def main():
                     while True:
                         try:
                             ch = int(input("\n1. Add Contact\n2. Display Contacts\n3. Edit Contact"
-                                           "\n4. Delete Contact\n5. sort contact by first name \n6. Exit\nEnter your choice: "))
+                                           "\n4. Delete Contact\n5. sort contact by first name\n6 sort by city or state or zip_code \n7. Exit\nEnter your choice: "))
 
                             match ch:
                                 case 1:
@@ -71,8 +71,13 @@ def main():
                                 
                                 case 5:
                                     address_book.sort_name()
-
+                                
                                 case 6:
+                                    sorting_by = input("Please enter the field you by which you want to sort contact")
+
+                                    address_book.loc_sort(sorting_by)
+
+                                case 7:
                                     print(f" Exiting Address Book '{address_book_name}' management.")
                                     break  
 
