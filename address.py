@@ -38,6 +38,22 @@ class AddressBook:
         for contact in self.contacts:
             print(contact)
 
+    def sort_name(self):
+        """
+        sort the contact alphabetically by first name
+
+        parameters:
+        self
+        
+        return:
+        none
+        """
+        self.contacts.sort(key = lambda contact : contact.fname)
+        print("contact in sorting format")
+        for contact in self.contacts:
+            print(contact)
+
+
     def edit_contact(self):
         """
         Edit the Existing Contact in the address book

@@ -36,7 +36,7 @@ def main():
                     while True:
                         try:
                             ch = int(input("\n1. Add Contact\n2. Display Contacts\n3. Edit Contact"
-                                           "\n4. Delete Contact\n5. Exit\nEnter your choice: "))
+                                           "\n4. Delete Contact\n5. sort contact by first name \n6. Exit\nEnter your choice: "))
 
                             match ch:
                                 case 1:
@@ -68,8 +68,11 @@ def main():
 
                                 case 4:
                                     address_book.delete_contact()
-
+                                
                                 case 5:
+                                    address_book.sort_name()
+
+                                case 6:
                                     print(f" Exiting Address Book '{address_book_name}' management.")
                                     break  
 
