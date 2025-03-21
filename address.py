@@ -1,27 +1,28 @@
 from validator import validate_user_data
 from contact import Contact
 import os
-import csv
+import json
 
 class AddressBook:
     """
-    A class to manage a collection of contacts in an address book.
+    A class to manage a collection of contacts in an address book using JSON storage.
     """
-
+    
     def __init__(self, name):
         """
-        Initializes an empty address book with a name and CSV file.
+        Initializes an empty address book with a name and JSON file.
         """
         self.address_book_name = name
         self.contacts = []
-        self.file_path = f'data/csv/{self.address_book_name}.csv'
+        self.file_path = f'data/json/{self.address_book_name}.json'
 
         if not os.path.exists(os.path.dirname(self.file_path)):
             os.makedirs(os.path.dirname(self.file_path))
 
         if not os.path.exists(self.file_path):
-            open(self.file_path, mode='w', newline='').close()
-
+            with open(self.file_path, 'w') as file:
+                json.dump([], file)
+        
         self.load_contacts()
 
     def add_contact(self, contact_o):
@@ -116,27 +117,19 @@ class AddressBook:
         return any(contact.fname.lower() == fname.lower() and contact.lname.lower() == lname.lower() for contact in self.contacts)
 
     def load_contacts(self):
-        """Loads contacts from the CSV file."""
-        if not os.path.exists(self.file_path):
-            return
-
+        """Loads contacts from the JSON file."""
         try:
-            with open(self.file_path, mode='r', newline='') as file:
-                reader = csv.DictReader(file)
-                for row in reader:
-                    self.contacts.append(Contact(**row))
-        except Exception as e:
-            print(f"Error loading contacts: {e}")
+            with open(self.file_path, 'r') as file:
+                data = json.load(file)
+                self.contacts = [Contact(**contact) for contact in data]
+        except (FileNotFoundError, json.JSONDecodeError):
+            print("No previous contacts found, starting fresh.")
 
     def save_contacts(self):
-        """Saves contacts to the CSV file."""
-        with open(self.file_path, mode='w', newline='') as file:
-            fieldnames = ['fname', 'lname', 'address', 'city', 'state', 'zip_code', 'phone_num', 'email']
-            writer = csv.DictWriter(file, fieldnames=fieldnames)
-            writer.writeheader()
+        """Saves contacts to the JSON file."""
+        with open(self.file_path, 'w') as file:
+            json.dump([contact.__dict__ for contact in self.contacts], file, indent=4)
 
-            for contact in self.contacts:
-                writer.writerow(contact.__dict__)
 
 
 
